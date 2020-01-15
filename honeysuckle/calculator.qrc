@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/calculatorqml">
+        <file>surface.qml</file>
+    </qresource>
+</RCC>
