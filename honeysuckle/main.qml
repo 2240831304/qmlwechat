@@ -5,6 +5,8 @@ import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
 import org.com.calculatorclient 1.1
+import QtLocation 5.6
+import QtQml 2.2
 
 Window {
     id:root
@@ -32,14 +34,17 @@ Window {
 
         Button{
             id:calculatorbut
-            text:"计算器"
+            state: "normal"
+            //text:"计算器"
+            //implicitWidth:80
+            //implicitHeight:60
             anchors.verticalCenter: parent.verticalCenter
             anchors.horizontalCenter: parent.horizontalCenter
+            Image{
+                anchors.fill: parent
+                source: "qrc:/image/calculator.png"
+            }
 
-
-            //property string pressPic: "qrc:/image/123.png"
-            //property string nomerPic: "qrc:/Images/001.png"
-            //property string hoverPic: "qrc:/Images/002.png"
             onClicked:
             {
                 console.log("calculator app Button clicked....")
@@ -47,7 +52,7 @@ Window {
                 calObject.createUI()
             }
 
-            background:Rectangle{
+            background:Rectangle {
                 implicitWidth:80
                 implicitHeight:60
                 color:"lightgray"
@@ -55,13 +60,20 @@ Window {
                 border.color:(calculatorbut.hovered || calculatorbut.pressed)?"blue":"red"
             }
 
-            //display:AbstractButton.TextBesideIcon
-            //icon.source: "images/Contacts_white_round.png" //icon路径
-            //icon.width:48 //宽度
-            //icon.height:48 //高度
-            //icon.color:"transparent" //颜色
+            //background: Image{
+            //    source: "qrc:/image/calculator.png"
+            //}
 
             }
+
+        Text {
+            anchors.top : calculatorbut.bottom
+            anchors.margins: 2
+            anchors.left: calculatorbut.left
+            width:calculatorbut.width
+            height:30
+            text:"计算器"
+        }
 
     }
 
