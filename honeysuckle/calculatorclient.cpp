@@ -11,6 +11,11 @@ CalculatorClient::CalculatorClient(QObject *parent)
 
 }
 
+CalculatorClient::~CalculatorClient()
+{
+    qDebug() << "CalculatorClient::~CalculatorClient() delete!!!";
+}
+
 void CalculatorClient::testFunction()
 {
     qDebug() << "CalculatorClient::testFunction()===========";

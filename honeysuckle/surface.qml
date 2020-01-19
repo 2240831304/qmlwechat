@@ -26,7 +26,6 @@ Item {
         anchors.top:  firstInput.bottom
         anchors.margins: 3
         anchors.left: firstInput.left
-
     }
 
     Text {
@@ -108,6 +107,26 @@ Item {
         }
     }
 
+    Button{
+        id:newWindowBut
+        width:100
+        height:50
+        anchors.left: layoutManagerBut.right
+        anchors.leftMargin: 3
+        anchors.top: layoutManagerBut.top
+        text:"打开新窗口"
+
+        onClicked:
+        {
+            var component = Qt.createComponent("layoutmanager.qml")
+            if (component.status === Component.Ready) {
+                var bQml = component.createObject(root);
+                root.visible = false
+                component.visible = true
+            }
+        }
+    }
+
     Connections{
         target: CalculatorServerObject
         onChangeSig:{
@@ -120,7 +139,6 @@ Item {
     {
         console.log("surface.qml function changeText()!!!!!!!!!!!!!!!")
         //CalculatorServerObject.testFunction()
-        resultText.text = "sssssssss"
     }
 
 }

@@ -17,6 +17,11 @@ CalculatorServer::CalculatorServer(QObject *parent)
 
 }
 
+CalculatorServer::~CalculatorServer()
+{
+   qDebug() << "CalculatorServer::~CalculatorServer() delete!!";
+}
+
 
 int CalculatorServer::getTestValue()
 {
@@ -64,8 +69,12 @@ void CalculatorServer::connectSignal()
 
 void CalculatorServer::createLayoutManager()
 {
-    QQuickView *view = new QQuickView;
-    view->setSource(QUrl("qrc:/calculatorqml/layoutmanager.qml"));
-    view->show();
+//    QQuickView *view = new QQuickView;
+//    view->setSource(QUrl("qrc:/calculatorqml/layoutmanager.qml"));
+//    view->show();
+    QQmlApplicationEngine *engine = new QQmlApplicationEngine;
+    engine->load(QUrl(QStringLiteral("qrc:/calculatorqml/layoutmanager.qml")));
+    if (engine->rootObjects().isEmpty())
+        return ;
 }
 

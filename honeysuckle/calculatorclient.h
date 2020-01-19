@@ -8,6 +8,7 @@ class CalculatorClient : public QObject
     Q_OBJECT
 public:
     explicit CalculatorClient(QObject *parent = nullptr);
+    ~CalculatorClient();
 
     Q_INVOKABLE void createUI();
     Q_INVOKABLE void testFunction();

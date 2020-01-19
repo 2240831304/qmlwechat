@@ -53,7 +53,15 @@ Window {
             {
                 console.log("calculator app Button clicked....")
                 //calObject.testFunction()
+
                 calObject.createUI()
+
+//                var component = Qt.createComponent("qrc:/calculatorqml/surface.qml")
+//                if (component.status === Component.Ready) {
+//                    var bQml = component.createObject(root);
+//                    root.visible = false
+//                    component.visible = true
+//                }
             }
 
             background:Rectangle {

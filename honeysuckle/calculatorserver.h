@@ -11,6 +11,7 @@ class CalculatorServer : public QObject
     Q_OBJECT
 public:
     explicit CalculatorServer(QObject *parent = nullptr);
+    ~CalculatorServer();
 
     Q_INVOKABLE int getTestValue();
     Q_INVOKABLE void testFunction();
