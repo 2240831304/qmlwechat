@@ -23,4 +23,6 @@ void CalculatorClient::createUI()
     view->rootContext()->setContextProperty("CalculatorServerObject",server);
     view->setSource(QUrl("qrc:/calculatorqml/surface.qml"));
     view->show();
+
+    emit testSig();
 }

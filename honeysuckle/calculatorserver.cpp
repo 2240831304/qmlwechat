@@ -6,12 +6,13 @@
 CalculatorServer::CalculatorServer(QObject *parent)
     : QObject(parent)
 {
-//    QQmlApplicationEngine *engine = new QQmlApplicationEngine;
-//    engine->load(QUrl(QStringLiteral("qrc:/calculatorqml/surface.qml")));
-//    QObject *pRoot = engine->rootObjects().first();
-//    if(pRoot)
-//        qDebug() << "CalculatorServer::CalculatorServer connectSignal() qml!!!!!";
-//    QObject::connect(this,SIGNAL(changeSig()),pRoot,SLOT(changeText()));
+    QQmlApplicationEngine *engine = new QQmlApplicationEngine;
+    engine->load(QUrl(QStringLiteral("qrc:/calculatorqml/surface.qml")));
+    QObject *pRoot = engine->rootObjects().first();
+    if(pRoot) {
+        qDebug() << "CalculatorServer::CalculatorServer connectSignal() qml!!!!!";
+        QObject::connect(this,SIGNAL(changeSig()),pRoot,SLOT(changeText()));
+    }
 
 }
 

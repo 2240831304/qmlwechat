@@ -13,6 +13,7 @@ public:
     Q_INVOKABLE void testFunction();
 
 signals:
+    void testSig();
 
 public slots:
 

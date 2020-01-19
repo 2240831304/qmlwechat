@@ -78,6 +78,7 @@ Item {
 
     Button{
         id:signalbinded
+        objectName:"testtestdst"
         width:100
         height:50
         anchors.left: listmapdatatestBut.right
@@ -91,12 +92,19 @@ Item {
         }
     }
 
+    Connections{
+        target: CalculatorServerObject
+        onChangeSig:{
+            console.log("surface.qml 注册的是C++对象，则需要Connections连接")
+            resultText.text = "signal test"
+        }
+    }
+
     function changeText()
     {
         console.log("surface.qml function changeText()!!!!!!!!!!!!!!!")
         //CalculatorServerObject.testFunction()
         resultText.text = "sssssssss"
     }
-
 
 }

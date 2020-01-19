@@ -15,10 +15,14 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-
     Calculator{
         id:calObject
+        onTestSig:{
+            console.log("main.qml 注册的是C++类，那么可以在QML中实例化对象的时候直接捕获")
+            calculatorName.text = "计算器1"
+        }
     }
+
 
     Rectangle{
         //x:120
@@ -67,6 +71,7 @@ Window {
             }
 
         Text {
+            id:calculatorName
             anchors.top : calculatorbut.bottom
             anchors.margins: 2
             anchors.left: calculatorbut.left

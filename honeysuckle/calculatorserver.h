@@ -20,7 +20,7 @@ public:
 
 
 signals:
-    void changeSig();
+     void changeSig();
 
 public slots:
 
