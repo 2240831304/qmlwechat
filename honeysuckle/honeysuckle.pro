@@ -14,11 +14,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp \
     calculatorclient.cpp \
-    calculatorserver.cpp
+    calculatorserver.cpp \
 
 RESOURCES += \
     calculator.qrc \
-    main.qrc
+    main.qrc \
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -33,4 +33,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     calculatorclient.h \
-    calculatorserver.h
+    calculatorserver.h \

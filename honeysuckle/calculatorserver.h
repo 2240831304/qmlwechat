@@ -17,6 +17,7 @@ public:
     Q_INVOKABLE QString calAdd(const QString &,const QString &);
     Q_INVOKABLE void callingFromQml(QVariantList list, QVariantMap map);
     Q_INVOKABLE void connectSignal();
+    Q_INVOKABLE void createLayoutManager();
 
 
 signals:

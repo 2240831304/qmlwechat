@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QQmlApplicationEngine>
 #include <QObject>
+#include <QQuickView>
 
 CalculatorServer::CalculatorServer(QObject *parent)
     : QObject(parent)
@@ -59,5 +60,12 @@ void CalculatorServer::callingFromQml(QVariantList list, QVariantMap map)
 void CalculatorServer::connectSignal()
 {
     emit changeSig();
+}
+
+void CalculatorServer::createLayoutManager()
+{
+    QQuickView *view = new QQuickView;
+    view->setSource(QUrl("qrc:/calculatorqml/layoutmanager.qml"));
+    view->show();
 }
 

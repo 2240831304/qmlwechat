@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/calculatorqml">
         <file>surface.qml</file>
+        <file>layoutmanager.qml</file>
     </qresource>
 </RCC>

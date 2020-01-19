@@ -12,6 +12,7 @@ Item {
     visible: true
     width: 640
     height: 480
+    objectName:"technology"
 
     TextInput{
         id:firstInput
@@ -38,7 +39,7 @@ Item {
 
     Button{
         id:calculatorBtn
-        x:300
+        x:2
         y:100
         width:100
         height:50
@@ -89,6 +90,21 @@ Item {
         onClicked:
         {
             CalculatorServerObject.connectSignal()
+        }
+    }
+
+    Button{
+        id:layoutManagerBut
+        width:100
+        height:50
+        anchors.left: signalbinded.right
+        anchors.leftMargin: 3
+        anchors.top: signalbinded.top
+        text:"布局管理器"
+
+        onClicked:
+        {
+            CalculatorServerObject.createLayoutManager()
         }
     }
 
