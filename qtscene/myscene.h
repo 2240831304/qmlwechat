@@ -2,12 +2,18 @@
 #define MYSCENE_H
 
 #include <QGraphicsScene>
+#include "data.h"
 
 class MyScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
     MyScene(QObject *parent = 0);
+
+protected:
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
+    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
 
 private:
     void buildTest();

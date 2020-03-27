@@ -27,9 +27,11 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     myitem.cpp \
-    myscene.cpp
+    myscene.cpp \
+    data.cpp
 
 HEADERS += \
         mainwindow.h \
     myitem.h \
-    myscene.h
+    myscene.h \
+    data.h
