@@ -63,6 +63,11 @@ void MyScene::buildUI()
 
 }
 
+void MyScene::drawBackground( QPainter * painter, const QRectF & rect )
+{
+
+}
+
 void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
 

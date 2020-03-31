@@ -11,6 +11,7 @@ public:
     MyScene(QObject *parent = 0);
 
 protected:
+    void drawBackground ( QPainter * painter, const QRectF & rect );
     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
