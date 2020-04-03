@@ -57,9 +57,9 @@ void CalculatorServer::callingFromQml(QVariantList list, QVariantMap map)
         qDebug() << "value: " << value;
     }
     qDebug() << "The object values are: ";
-    qDebug() << "map.from" << map["from"].toString();
-    qDebug() << "map.to" << map["to"].toString();
-    qDebug() << "map.message" << map["message"].toString();
+    qDebug() << "map.from:" << map["from"].toString();
+    qDebug() << "map.to:" << map["to"].toString();
+    qDebug() << "map.message:" << map["message"].toString();
 }
 
 void CalculatorServer::connectSignal()
