@@ -5,12 +5,27 @@ data::data()
 
 }
 
+data::~data()
+{
+    dataVector.clear();
+}
+
 int data::getAppNumber()
 {
     return dataVector.size();
 }
 
+const AppInfo & data::getData(int number)
+{
+   return  dataVector[number];
+}
+
 void data::loadAppData()
+{
+    loadData();
+}
+
+void data::loadData()
 {
     AppInfo info;
     info.picPath = "ded";
@@ -26,7 +41,7 @@ void data::loadAppData()
     dataVector.push_back(info);
 
     info.picPath = "ded";
-    info.appName = "fore";
+    info.appName = "four";
     dataVector.push_back(info);
 
     info.picPath = "ded";

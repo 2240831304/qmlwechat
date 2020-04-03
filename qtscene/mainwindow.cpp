@@ -3,6 +3,7 @@
 #include <QGraphicsView>
 #include <QGraphicsScene>
 #include "myscene.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,7 +21,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::buildui()
 {
-    QGraphicsView *view = new QGraphicsView(this);
+    view = new QGraphicsView(this);
     view->move(50,50);
     view->setFixedSize(600,400);
     view->setSceneRect(0,0,600,400);
@@ -28,5 +29,11 @@ void MainWindow::buildui()
 
     MyScene *scene = new MyScene(this);
     view->setScene(scene);
+    connect(scene,SIGNAL(updateSig()),this,SLOT(updateSlot()));
 
+}
+
+void MainWindow::updateSlot()
+{
+    view->update();
 }

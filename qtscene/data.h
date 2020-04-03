@@ -14,11 +14,14 @@ class data
 {
 public:
     data();
+    ~data();
 
     int getAppNumber();
+    const AppInfo &getData(int );
+    void loadAppData();
 
 private:
-    void loadAppData();
+    void loadData();
 
 private:
     QVector<AppInfo> dataVector;

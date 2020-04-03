@@ -61,6 +61,9 @@ QRectF MyItem::boundingRect() const
 void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
            QWidget *widget)
 {
+    if(pixName.isEmpty())
+        return;
+
     QPen pen(Qt::black);
     painter->setPen(pen);
 

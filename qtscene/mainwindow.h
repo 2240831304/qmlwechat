@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QGraphicsView>
 
 class MainWindow : public QMainWindow
 {
@@ -13,6 +14,12 @@ public:
 
 private:
     void buildui();
+
+private slots:
+    void updateSlot();
+
+private:
+    QGraphicsView *view;
 };
 
 #endif // MAINWINDOW_H

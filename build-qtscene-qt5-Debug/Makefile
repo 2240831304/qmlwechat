@@ -394,7 +394,8 @@ moc_myitem.cpp: ../qtscene/myitem.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/astron/Projects/github/qmlwechat/qtscene -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/4.9 -I/usr/include/x86_64-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qtscene/myitem.h -o moc_myitem.cpp
 
-moc_myscene.cpp: ../qtscene/myscene.h \
+moc_myscene.cpp: ../qtscene/data.h \
+		../qtscene/myscene.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include ./moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/astron/Projects/github/qmlwechat/qtscene -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/4.9 -I/usr/include/x86_64-linux-gnu/c++/4.9 -I/usr/include/c++/4.9/backward -I/usr/lib/gcc/x86_64-linux-gnu/4.9/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/4.9/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../qtscene/myscene.h -o moc_myscene.cpp
@@ -417,13 +418,15 @@ main.o: ../qtscene/main.cpp ../qtscene/mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../qtscene/main.cpp
 
 mainwindow.o: ../qtscene/mainwindow.cpp ../qtscene/mainwindow.h \
-		../qtscene/myscene.h
+		../qtscene/myscene.h \
+		../qtscene/data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../qtscene/mainwindow.cpp
 
 myitem.o: ../qtscene/myitem.cpp ../qtscene/myitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myitem.o ../qtscene/myitem.cpp
 
 myscene.o: ../qtscene/myscene.cpp ../qtscene/myscene.h \
+		../qtscene/data.h \
 		../qtscene/myitem.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o myscene.o ../qtscene/myscene.cpp
 
