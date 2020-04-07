@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp \
     calculatorclient.cpp \
     calculatorserver.cpp \
+    listviewmanager.cpp
 
 RESOURCES += \
     calculator.qrc \
@@ -34,3 +35,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     calculatorclient.h \
     calculatorserver.h \
+    listviewmanager.h

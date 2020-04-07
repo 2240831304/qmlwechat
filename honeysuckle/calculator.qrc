@@ -3,5 +3,6 @@
         <file>surface.qml</file>
         <file>layoutmanager.qml</file>
         <file>repeater.qml</file>
+        <file>listview.qml</file>
     </qresource>
 </RCC>

@@ -99,7 +99,7 @@ Item {
         anchors.left: signalbinded.right
         anchors.leftMargin: 3
         anchors.top: signalbinded.top
-        text:"布局管理器"
+        text:"布局管理"
 
         onClicked:
         {
@@ -114,11 +114,31 @@ Item {
         anchors.left: layoutManagerBut.right
         anchors.leftMargin: 3
         anchors.top: layoutManagerBut.top
-        text:"打开新窗口"
+        text:"重复器"
 
         onClicked:
         {
             var component = Qt.createComponent("repeater.qml")
+            if (component.status === Component.Ready) {
+                var bQml = component.createObject(root);
+                //root.visible = false
+                component.visible = true
+            }
+        }
+    }
+
+    Button{
+        id:listViewWindowBut
+        width:100
+        height:50
+        anchors.left: newWindowBut.right
+        anchors.leftMargin: 3
+        anchors.top: newWindowBut.top
+        text:"列表视觉"
+
+        onClicked:
+        {
+            var component = Qt.createComponent("listview.qml")
             if (component.status === Component.Ready) {
                 var bQml = component.createObject(root);
                 //root.visible = false
