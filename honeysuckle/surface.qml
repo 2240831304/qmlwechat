@@ -118,10 +118,10 @@ Item {
 
         onClicked:
         {
-            var component = Qt.createComponent("layoutmanager.qml")
+            var component = Qt.createComponent("repeater.qml")
             if (component.status === Component.Ready) {
                 var bQml = component.createObject(root);
-                root.visible = false
+                //root.visible = false
                 component.visible = true
             }
         }

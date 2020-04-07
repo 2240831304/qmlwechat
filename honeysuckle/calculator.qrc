@@ -2,5 +2,6 @@
     <qresource prefix="/calculatorqml">
         <file>surface.qml</file>
         <file>layoutmanager.qml</file>
+        <file>repeater.qml</file>
     </qresource>
 </RCC>

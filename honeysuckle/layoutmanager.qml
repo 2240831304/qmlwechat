@@ -11,7 +11,7 @@ Window {
     height: 480
 
     Text {
-        id: name
+        id: mytextid
         text: qsTr("textefefrfrfr")
     }
 
@@ -19,8 +19,10 @@ Window {
            id: gridLayout1
            columns: 2;
            rows:2;
-           anchors.fill: parent;
-           anchors.margins: 5;
+           anchors.top: mytextid.bottom
+           anchors.left: mytextid.left
+           anchors.fill: parent ;
+           //anchors.margins: 5;
            columnSpacing: 0;
            rowSpacing: 0;
 
