@@ -64,8 +64,8 @@ Window{
 
             onCurrentIndexChanged: {
                 console.log(view.currentIndex)
-                var model = listModel.data(name);
-                console.log(model)
+                console.log("name:" + listModel.get(view.currentIndex).name)
+                console.log("number:" + listModel.get(view.currentIndex).number)
             }
     }
 
