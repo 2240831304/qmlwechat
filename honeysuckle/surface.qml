@@ -134,7 +134,7 @@ Item {
         anchors.left: newWindowBut.right
         anchors.leftMargin: 3
         anchors.top: newWindowBut.top
-        text:"列表视觉"
+        text:"列表视图"
 
         onClicked:
         {
@@ -144,6 +144,20 @@ Item {
                 //root.visible = false
                 component.visible = true
             }
+        }
+    }
+
+    Button{
+        id:mutualListViewBut
+        width:100
+        height:50
+        anchors.left: calculatorBtn.left
+        anchors.topMargin: 3
+        anchors.top: calculatorBtn.bottom
+        text:"后台交互视图"
+
+        onClicked:
+        {
         }
     }
 
