@@ -20,6 +20,8 @@ public:
     Q_INVOKABLE void connectSignal();
     Q_INVOKABLE void createLayoutManager();
 
+    Q_INVOKABLE void createListView();
+
 
 signals:
      void changeSig();

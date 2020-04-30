@@ -78,3 +78,8 @@ void CalculatorServer::createLayoutManager()
         return ;
 }
 
+void CalculatorServer::createListView()
+{
+
+}
+
