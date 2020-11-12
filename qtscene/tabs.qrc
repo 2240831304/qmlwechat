@@ -4,5 +4,6 @@
 	<file>1.png</file>
 	<file>2.png</file>
 	<file>3.png</file>
+	<file>close.png</file>
     </qresource>
 </RCC>
