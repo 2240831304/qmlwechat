@@ -5,6 +5,8 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += quick
+CONFIG += c++11
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,10 +30,16 @@ SOURCES += \
         mainwindow.cpp \
     myitem.cpp \
     myscene.cpp \
-    data.cpp
+    data.cpp \
+    tabwidget.cpp
 
 HEADERS += \
         mainwindow.h \
     myitem.h \
     myscene.h \
-    data.h
+    data.h \
+    tabwidget.h
+
+RESOURCES += \
+    tabs.qrc \
+    qtsence.qrc
