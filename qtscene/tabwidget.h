@@ -15,6 +15,7 @@ private:
 signals:
 
 public slots:
+    void tabCloseRequestedSlot(int);
 };
 
 #endif // TABWIDGET_H

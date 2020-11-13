@@ -8,6 +8,8 @@
 #include <QIcon>
 #include <QTabBar>
 #include <QPalette>
+#include "myqtabbar.h"
+#include <QDebug>
 
 Tabwidget::Tabwidget(QWidget *parent) : QWidget(parent)
 {
@@ -25,18 +27,36 @@ void Tabwidget::initface()
     tabWidget->setTabPosition(QTabWidget::North);
     tabWidget->setIconSize(QSize(20,20));
     tabWidget->setTabsClosable(true);
+    connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(tabCloseRequestedSlot(int)));
+
+
+    QString tabBarStyle = "QTabWidget{padding:0px;margin:0px;border:0px;}\
+                          QTabBar::tab {margin-right:0.1px;margin-bottom:1px; min-width:50px;color: black;border-top: 1px solid;border-top-left-radius: 5px;\
+                            border-left: 1px solid;border-right: 1px solid;\
+                          border-top-right-radius: 5px;padding:5px;}\
+    QTabBar::tab:!selected {margin-top: 0px;background-color: rgb(205, 201, 201);} \
+    QTabBar::tab:selected {background-color: rgb(0, 238, 0);border-bottom: 2px solid;} \
+    QTabBar::tab:hover:!selected{background-color: rgb(255, 165, 0);}";
+
+    tabWidget->setStyleSheet(tabBarStyle);
+
+    //MyQTabBar *mytabBar = new MyQTabBar();
+    //tabWidget->setTabBar(mytabBar);
 
     QIcon iconClose(":/image/close.png");
     QPushButton *closeBut = new QPushButton(this);
-    //closeBut->setGeometry(0,0,0,0);
-    closeBut->setIcon(iconClose);
+    //closeBut->setIcon(iconClose);
 
-    QPalette pal = closeBut->palette();              //startBtn是我已经定义好的QPushButton对象
-    pal.setColor(QPalette::ButtonText, Qt::red);    //设置按钮上的字体颜色，理论上可以，实际上就是可以
-    pal.setColor(QPalette::Button, Qt::green);      //设置按钮背景颜色，理论上可以，实际上不可以
+    QString pushButStyle = "QPushButton{width:20px;height:20px;padding:0px;border:0px;border-image:url(:/image/close.png);} \
+            QPushButton:hover{border-image:url(:/image/1.png);} \
+            QPushButton:pressed{border-image:url(:/image/2.png);}";
+    closeBut->setStyleSheet(pushButStyle);
 
-    closeBut->setPalette(pal);
-    closeBut->setFixedSize(15,15);
+    //QPalette pal = closeBut->palette();              //startBtn是我已经定义好的QPushButton对象
+    //pal.setColor(QPalette::ButtonText, Qt::red);    //设置按钮上的字体颜色，理论上可以，实际上就是可以
+    //pal.setColor(QPalette::Button, Qt::green);      //设置按钮背景颜色，理论上可以，实际上不可以
+
+    //closeBut->setPalette(pal);
     //closeBut.setStyleSheet("background-color:green");
 
 
@@ -53,13 +73,14 @@ void Tabwidget::initface()
     //tabWidget->addTab(widget,icon1,"Tab1");
     tabWidget->addTab(widget,"Tab1");
     //((QTabBar*)(tabWidget->tabBar()))->setTabButton(tabWidget->indexOf(widget),QTabBar::RightSide,NULL);
-    //((QTabBar*)(tabWidget->tabBar()))->setTabButton(tabWidget->indexOf(widget),QTabBar::RightSide,closeBut);
+    ((QTabBar*)(tabWidget->tabBar()))->setTabButton(tabWidget->indexOf(widget),QTabBar::RightSide,closeBut);
 
     //新建第二个页面的部件
     QLabel *label = new QLabel("Hello Qt",this);
-    //QIcon icon2(":/image/2.png");
-    //tabWidget->addTab(label,icon2,"Tab2");
-    tabWidget->addTab(label,"Tab2");
+    label->setStyleSheet("background-color:green");
+    QIcon icon2(":/image/2.png");
+    tabWidget->addTab(label,icon2,"Tab25555555555555");
+    //tabWidget->addTab(label,"Tab25555555555555");
 
     //新建第三个页面的部件
     QPushButton *pushButton3 = new QPushButton("Click Me",this);
@@ -70,4 +91,9 @@ void Tabwidget::initface()
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(tabWidget);
 
+}
+
+void Tabwidget::tabCloseRequestedSlot(int index)
+{
+    qDebug() << "EEEEEEEEEEEEEEEEEEEEEEE= " << index;
 }

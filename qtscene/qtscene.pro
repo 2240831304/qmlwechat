@@ -31,14 +31,16 @@ SOURCES += \
     myitem.cpp \
     myscene.cpp \
     data.cpp \
-    tabwidget.cpp
+    tabwidget.cpp \
+    myqtabbar.cpp
 
 HEADERS += \
         mainwindow.h \
     myitem.h \
     myscene.h \
     data.h \
-    tabwidget.h
+    tabwidget.h \
+    myqtabbar.h
 
 RESOURCES += \
     tabs.qrc \
