@@ -32,7 +32,8 @@ SOURCES += \
     myscene.cpp \
     data.cpp \
     tabwidget.cpp \
-    myqtabbar.cpp
+    myqtabbar.cpp \
+    mytabwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     myscene.h \
     data.h \
     tabwidget.h \
-    myqtabbar.h
+    myqtabbar.h \
+    mytabwidget.h
 
 RESOURCES += \
     tabs.qrc \

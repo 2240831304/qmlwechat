@@ -8,8 +8,8 @@
 #include <QIcon>
 #include <QTabBar>
 #include <QPalette>
-#include "myqtabbar.h"
 #include <QDebug>
+#include "mytabwidget.h"
 
 Tabwidget::Tabwidget(QWidget *parent) : QWidget(parent)
 {
@@ -21,8 +21,10 @@ Tabwidget::Tabwidget(QWidget *parent) : QWidget(parent)
 
 void Tabwidget::initface()
 {
-    QTabWidget *tabWidget = new QTabWidget(this);
+    //QTabWidget *tabWidget = new QTabWidget(this);
     //tabWidget->setTabShape(QTabWidget::Triangular);//设置选项卡的形状 Rounded
+
+    MyTabwidget *tabWidget = new MyTabwidget(this);
     tabWidget->setMovable(true);  //设置表头可以拖动换位置
     tabWidget->setTabPosition(QTabWidget::North);
     tabWidget->setIconSize(QSize(20,20));
@@ -31,23 +33,22 @@ void Tabwidget::initface()
 
 
     QString tabBarStyle = "QTabWidget{padding:0px;margin:0px;border:0px;}\
-                          QTabBar::tab {margin-right:1px;margin-bottom:1px; min-width:50px;color: black;border-top: 1px solid;border-top-left-radius: 5px;\
-                            border-left: 1px solid;border-right: 1px solid;\
-                          border-top-right-radius: 5px;padding:5px;}\
+                          QTabBar::tab {margin-right:0px;margin-bottom:1px; min-width:50px;color: black;\
+                            border-top-left-radius: 5px;border-top-right-radius: 5px;padding:5px;\
+                            border-top: 1px solid; border-left: 0px solid;border-right: 1px solid;}\
+                            QTabBar::tab:first{border-left: 1px solid;}\
     QTabBar::tab:!selected {margin-top: 0px;background-color: rgb(205, 201, 201);} \
     QTabBar::tab:selected {background-color: rgb(0, 238, 0);border-bottom: 2px solid;} \
     QTabBar::tab:hover:!selected{background-color: rgb(255, 165, 0);}";
 
     tabWidget->setStyleSheet(tabBarStyle);
 
-    //MyQTabBar *mytabBar = new MyQTabBar();
-    //tabWidget->setTabBar(mytabBar);
 
     QIcon iconClose(":/image/close.png");
     QPushButton *closeBut = new QPushButton(this);
     //closeBut->setIcon(iconClose);
 
-    QString pushButStyle = "QPushButton{width:20px;height:20px;padding:0px;border:0px;border-image:url(:/image/close.png);} \
+    QString pushButStyle = "QPushButton{width:20px;height:20px;padding:0px;border:0px;background: transparent; border-image:url(:/image/close.png);} \
             QPushButton:hover{border-image:url(:/image/1.png);} \
             QPushButton:pressed{border-image:url(:/image/2.png);}";
     closeBut->setStyleSheet(pushButStyle);
