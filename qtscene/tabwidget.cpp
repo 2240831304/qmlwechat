@@ -31,7 +31,7 @@ void Tabwidget::initface()
 
 
     QString tabBarStyle = "QTabWidget{padding:0px;margin:0px;border:0px;}\
-                          QTabBar::tab {margin-right:0.1px;margin-bottom:1px; min-width:50px;color: black;border-top: 1px solid;border-top-left-radius: 5px;\
+                          QTabBar::tab {margin-right:1px;margin-bottom:1px; min-width:50px;color: black;border-top: 1px solid;border-top-left-radius: 5px;\
                             border-left: 1px solid;border-right: 1px solid;\
                           border-top-right-radius: 5px;padding:5px;}\
     QTabBar::tab:!selected {margin-top: 0px;background-color: rgb(205, 201, 201);} \
