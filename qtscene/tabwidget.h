@@ -9,6 +9,7 @@ class Tabwidget : public QWidget
 public:
     explicit Tabwidget(QWidget *parent = nullptr);
 
+
 private:
     void initface();
 

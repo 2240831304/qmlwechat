@@ -27,6 +27,7 @@ void Tabwidget::initface()
     MyTabwidget *tabWidget = new MyTabwidget(this);
     tabWidget->setMovable(true);  //设置表头可以拖动换位置
     tabWidget->setTabPosition(QTabWidget::North);
+    //tabWidget->setTabPosition(QTabWidget::South);
     tabWidget->setIconSize(QSize(20,20));
     tabWidget->setTabsClosable(true);
     connect(tabWidget,SIGNAL(tabCloseRequested(int)),this,SLOT(tabCloseRequestedSlot(int)));
@@ -72,7 +73,7 @@ void Tabwidget::initface()
     //向QTabWidget中添加第一个页面
     //QIcon icon1(":/image/1.png");
     //tabWidget->addTab(widget,icon1,"Tab1");
-    tabWidget->addTab(widget,"Tab1");
+    tabWidget->addTab(widget,"Tab1555555555555555555555");
     //((QTabBar*)(tabWidget->tabBar()))->setTabButton(tabWidget->indexOf(widget),QTabBar::RightSide,NULL);
     ((QTabBar*)(tabWidget->tabBar()))->setTabButton(tabWidget->indexOf(widget),QTabBar::RightSide,closeBut);
 

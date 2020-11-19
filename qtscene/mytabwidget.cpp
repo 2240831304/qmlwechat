@@ -3,8 +3,8 @@
 
 MyTabwidget::MyTabwidget(QObject *parent)
 {
-    //MyQTabBar * bar = new MyQTabBar();
-    //setTabBar(bar);
+    MyQTabBar * bar = new MyQTabBar();
+    setTabBar(bar);
 }
 
 
