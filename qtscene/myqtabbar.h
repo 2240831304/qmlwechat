@@ -12,7 +12,7 @@ public:
 
     QSize tabSizeHint(int index) const{
         QSize s = QTabBar::tabSizeHint(index);
-        s.transpose();
+        //s.transpose(); //转换宽和高的值
         return s;
    }
 

@@ -9,8 +9,7 @@ class MyTabwidget : public QTabWidget
 public:
     MyTabwidget(QObject *parent = 0);
 
-protected:
-    void paintEvent(QPaintEvent *);
+
 
 };
 

@@ -8,7 +8,3 @@ MyTabwidget::MyTabwidget(QObject *parent)
 }
 
 
-void MyTabwidget::paintEvent(QPaintEvent *)
-{
-
-}
