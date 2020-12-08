@@ -11,6 +11,8 @@ MyItem::MyItem()
     //setAcceptDrops(true);
     //setFlags(ItemIsSelectable | ItemIsMovable);
     isFocus = false;
+
+    setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);
 }
 
 void MyItem::setPixmap(const QString &pixPath)
@@ -27,6 +29,16 @@ void MyItem::setpos(int x,int y)
 {
     xpos = x;
     ypos = y;
+}
+
+int MyItem::getItemXpos()
+{
+    return xpos;
+}
+
+int MyItem::getItemYpos()
+{
+    return ypos;
 }
 
 void MyItem::setSize(int xwidth,int yheight)

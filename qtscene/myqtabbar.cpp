@@ -29,12 +29,16 @@ void MyQTabBar::paintEvent(QPaintEvent *)
         opt.rect = r;
 
         QPoint c = tabRect(i).center();
-        painter.translate(c);
+        painter.translate(c); //平移画笔的坐标
         //painter.rotate(90);
         painter.translate(-c);
         //画文字，图标
         painter.drawControl(QStyle::CE_TabBarTabLabel,opt);
+
+        //painter.drawControl(QStyle::CE_PushButtonBevel,opt);
         painter.restore();
+
+
    }
 
 }

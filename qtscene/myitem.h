@@ -18,6 +18,9 @@ public:
      void setSize(int ,int );
      void setFocusStatus(bool);
 
+     int getItemXpos();
+     int getItemYpos();
+
 protected:
 
 private:

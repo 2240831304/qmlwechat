@@ -5,11 +5,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
 
-    Tabwidget widget;
-    widget.show();
+    MainWindow scene;
+    scene.show();
+
+    //Tabwidget widget;
+    //widget.show();
 
     return a.exec();
 }

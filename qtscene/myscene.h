@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include "data.h"
 #include <QPoint>
+#include <QGraphicsItem>
 
 class MyScene : public QGraphicsScene
 {
@@ -23,6 +24,10 @@ private:
     void clear();
     void buildTest();
     void buildUI();
+
+private slots:
+    void focusItemChangedSlot(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);
+
 
 signals:
     void updateSig();

@@ -15,6 +15,8 @@ struct ItemPosition
 QVector<MyItem *>ItemVector;
 QVector<ItemPosition> ItemPosVector;
 
+int focusIndex = 0;
+
 MyScene::MyScene(QObject *parent)
     :QGraphicsScene(parent)
 {
@@ -27,6 +29,9 @@ MyScene::MyScene(QObject *parent)
 #else
     buildUI();
 #endif
+
+    connect(this,SIGNAL(focusItemChanged(QGraphicsItem *, QGraphicsItem *, Qt::FocusReason)),
+            this,SLOT(focusItemChangedSlot(QGraphicsItem *, QGraphicsItem *, Qt::FocusReason)));
 
 }
 
@@ -65,6 +70,16 @@ void MyScene::buildTest()
     dataObjec->loadAppData();
     totleAppNum = dataObjec->getAppNumber();
 
+#if 0
+    QGraphicsRectItem *rectItem = this->addRect(QRectF(200, 100, 200, 200));
+    rectItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);
+    QPen pen = rectItem->pen();
+    pen.setWidth(2);
+    pen.setColor(QColor(111, 111, 111));
+    rectItem->setPen(pen);
+    rectItem->setBrush(QColor(111, 111, 111, 100));
+#endif
+
     ItemPosition temPos;
 
     MyItem *itemOne = new MyItem;
@@ -91,6 +106,11 @@ void MyScene::buildTest()
     itemThree->setpos(240,100);
     itemThree->setSize(itemWidth,itemHeight);
     itemThree->setFocusStatus(true);
+
+    setFocusItem(itemThree);
+
+    focusIndex = 2;
+
     ItemVector.push_back(itemThree);
     itemThree->setName(dataObjec->getData(2).appName);
 
@@ -133,6 +153,12 @@ void MyScene::buildUI()
 
 }
 
+
+void MyScene::focusItemChangedSlot(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason)
+{
+    qDebug() << "===============点击图元================";
+}
+
 void MyScene::drawBackground( QPainter * painter, const QRectF & rect )
 {
 
@@ -167,19 +193,65 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     isMousePress = false;
 
+    qDebug() << "==============move before===============" << focusIndex;
+
     //向左滑动
     if(mouseEvent->screenPos().x() < pressedPos.x()){
+
+        int tempFocusIndex = focusIndex;
+        focusIndex += 1;
+
+        if(focusIndex >= totleAppNum){
+            focusIndex -= 1;
+            return;
+        }
+
         showFirstAppIndex += 1;
         showEndAppIndex += 1;
+        int tempXPt = 0;
+
         for(int i = 0; i<ItemVector.size();++i){
-            ItemVector[i]->setpos(20,20);
+            tempXPt = ItemVector[i]->getItemXpos() - 120;
+            ItemVector[i]->setpos(tempXPt,100);
+
+            if(i == tempFocusIndex){
+                ItemVector[i]->setFocusStatus(false);
+            }else if(i == focusIndex){
+                ItemVector[i]->setFocusStatus(true);
+            }
+
         }
 
 
     }else{
         //向右滑动
+        int tempFocusIndex = focusIndex;
+        focusIndex -= 1;
+
+        if(focusIndex < 0){
+            focusIndex += 1;
+            return;
+        }
+
+        showFirstAppIndex -= 1;
+        showEndAppIndex -= 1;
+        int tempXPt = 0;
+
+        for(int i = 0; i<ItemVector.size();++i){
+            tempXPt = ItemVector[i]->getItemXpos() + 120;
+            ItemVector[i]->setpos(tempXPt,100);
+
+            if(i == tempFocusIndex){
+                ItemVector[i]->setFocusStatus(false);
+            }else if(i == focusIndex){
+                ItemVector[i]->setFocusStatus(true);
+            }
+
+        }
 
     }
+
+    qDebug() << "==============move finished===============" << focusIndex;
 
     emit updateSig();
 }
