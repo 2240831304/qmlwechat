@@ -27,7 +27,7 @@ void MainWindow::buildui()
     view->setSceneRect(0,0,600,400);
     view->setStyleSheet("padding: 0px; border: 0px;");
 
-    MyScene *scene = new MyScene(this);
+    MyScene *scene = new MyScene();
     view->setScene(scene);
     connect(scene,SIGNAL(updateSig()),this,SLOT(updateSlot()));
 

@@ -22,6 +22,13 @@ public:
      int getItemYpos();
 
 protected:
+     void drawBackground ( QPainter * painter, const QRectF & rect );
+     // Shift+左键：进行选择  Alt：准备缩放
+     void mousePressEvent(QGraphicsSceneMouseEvent *event);
+     // Alt+拖拽：进行缩放  移动
+     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
 
 private:
      QString picPath;

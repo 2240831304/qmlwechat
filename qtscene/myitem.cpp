@@ -4,15 +4,19 @@
 #include <QPen>
 #include <QStyleOptionGraphicsItem>
 #include <QRect>
+#include <QPainter>
 #include <QDebug>
 
 MyItem::MyItem()
 {
     //setAcceptDrops(true);
-    //setFlags(ItemIsSelectable | ItemIsMovable);
     isFocus = false;
 
     setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);
+
+//    this->setFlag(QGraphicsItem::ItemIsSelectable);
+//    this->setAcceptedMouseButtons(Qt::LeftButton);
+    this->setAcceptHoverEvents(true);//重写hover事件需添加
 }
 
 void MyItem::setPixmap(const QString &pixPath)
@@ -70,6 +74,14 @@ QRectF MyItem::boundingRect() const
     }
 }
 
+void MyItem::drawBackground ( QPainter * painter, const QRectF & rect )
+{
+//    painter->setPen(Qt::NoPen);
+//    painter->setBrush(QBrush(QColor(0,0,255)));
+//    QRectF rect12 = boundingRect();
+//    painter->drawRect(rect12);
+}
+
 void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
            QWidget *widget)
 {
@@ -80,10 +92,29 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->setPen(pen);
 
     QRectF rect = boundingRect();
+    painter->setBrush(QBrush(QColor(0,0,255)));
     painter->drawRect(rect.x(),rect.y(),rect.width(),rect.height());
 
     int textHeight = (height - rect.height() ) / 2 -2;
     QRect rectTemp(rect.x(),rect.y() + rect.height() +2 ,rect.width(),textHeight);
+    painter->setPen(QPen(QColor(255,48,48)));
     painter->drawText(rectTemp, pixName, QTextOption(Qt::AlignHCenter | Qt::AlignVCenter));
 
+}
+
+
+void MyItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "=============图元点击事件产生===============";
+}
+
+// Alt+拖拽：进行缩放  移动
+void MyItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+{
+
+}
+
+void MyItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "=============图元点击，释放事件完成===============";
 }

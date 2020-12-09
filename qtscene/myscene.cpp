@@ -3,6 +3,7 @@
 #include "myitem.h"
 #include <QDebug>
 #include <QVector>
+#include <QPainter>
 #include <QGraphicsSceneMouseEvent>
 
 struct ItemPosition
@@ -72,7 +73,7 @@ void MyScene::buildTest()
 
 #if 0
     QGraphicsRectItem *rectItem = this->addRect(QRectF(200, 100, 200, 200));
-    rectItem->setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsFocusable);
+    rectItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
     QPen pen = rectItem->pen();
     pen.setWidth(2);
     pen.setColor(QColor(111, 111, 111));
@@ -106,8 +107,6 @@ void MyScene::buildTest()
     itemThree->setpos(240,100);
     itemThree->setSize(itemWidth,itemHeight);
     itemThree->setFocusStatus(true);
-
-    setFocusItem(itemThree);
 
     focusIndex = 2;
 
@@ -156,12 +155,27 @@ void MyScene::buildUI()
 
 void MyScene::focusItemChangedSlot(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason)
 {
-    qDebug() << "===============点击图元================";
+    qDebug() << "===============点击图元 slot================";
 }
 
 void MyScene::drawBackground( QPainter * painter, const QRectF & rect )
 {
+    painter->setPen(Qt::NoPen);
+    painter->setBrush(QBrush(QColor(192,192,192)));
+    painter->drawRect(rect);
+}
 
+
+#if 1
+
+void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
+{
+    if(mouseEvent->button() == Qt::LeftButton){
+        isMousePress = true;
+        pressedPos = mouseEvent->screenPos();
+    }
+
+    QGraphicsScene::mousePressEvent(mouseEvent); // 将点击事件向下传递到item中
 }
 
 
@@ -178,16 +192,9 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
         }
     }
 
+    QGraphicsScene::mouseMoveEvent(mouseEvent);
 }
 
-
-void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
-{
-    if(mouseEvent->button() == Qt::LeftButton){
-        isMousePress = true;
-        pressedPos = mouseEvent->screenPos();
-    }
-}
 
 void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
@@ -222,8 +229,8 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         }
 
-
-    }else{
+        emit updateSig();
+    }else if(mouseEvent->screenPos().x() > pressedPos.x()){
         //向右滑动
         int tempFocusIndex = focusIndex;
         focusIndex -= 1;
@@ -249,9 +256,12 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         }
 
+        emit updateSig();
     }
 
     qDebug() << "==============move finished===============" << focusIndex;
+    QGraphicsScene::mouseReleaseEvent(mouseEvent);
 
-    emit updateSig();
 }
+
+#endif
