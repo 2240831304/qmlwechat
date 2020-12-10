@@ -23,8 +23,8 @@ void MainWindow::buildui()
 {
     view = new QGraphicsView(this);
     view->move(50,50);
-    view->setFixedSize(600,400);
-    view->setSceneRect(0,0,600,400);
+    view->setFixedSize(400,400);
+    view->setSceneRect(0,0,400,400);
     view->setStyleSheet("padding: 0px; border: 0px;");
 
     MyScene *scene = new MyScene();

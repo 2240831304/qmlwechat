@@ -97,6 +97,7 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
     int textHeight = (height - rect.height() ) / 2 -2;
     QRect rectTemp(rect.x(),rect.y() + rect.height() +2 ,rect.width(),textHeight);
+
     painter->setPen(QPen(QColor(255,48,48)));
     painter->drawText(rectTemp, pixName, QTextOption(Qt::AlignHCenter | Qt::AlignVCenter));
 
@@ -106,15 +107,26 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 void MyItem::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "=============图元点击事件产生===============";
+
+    //QGraphicsItem::mousePressEvent(event);
 }
 
 // Alt+拖拽：进行缩放  移动
 void MyItem::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
 
+    //QGraphicsItem::mouseMoveEvent(event);
 }
 
 void MyItem::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     qDebug() << "=============图元点击，释放事件完成===============";
+
+    //QGraphicsItem::mouseReleaseEvent(event);
+}
+
+void MyItem::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "------------MyItem::mouseDoubleClickEvent-------";
+    emit doubleSig(pixName);
 }

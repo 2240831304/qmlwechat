@@ -29,6 +29,12 @@ protected:
      void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
      void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+
+
+
+signals:
+     void doubleSig(QString );
 
 private:
      QString picPath;

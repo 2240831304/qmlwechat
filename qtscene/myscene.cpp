@@ -31,9 +31,6 @@ MyScene::MyScene(QObject *parent)
     buildUI();
 #endif
 
-    connect(this,SIGNAL(focusItemChanged(QGraphicsItem *, QGraphicsItem *, Qt::FocusReason)),
-            this,SLOT(focusItemChangedSlot(QGraphicsItem *, QGraphicsItem *, Qt::FocusReason)));
-
 }
 
 MyScene::~MyScene()
@@ -71,9 +68,12 @@ void MyScene::buildTest()
     dataObjec->loadAppData();
     totleAppNum = dataObjec->getAppNumber();
 
-#if 0
-    QGraphicsRectItem *rectItem = this->addRect(QRectF(200, 100, 200, 200));
-    rectItem->setFlag(QGraphicsItem::ItemIsSelectable, true);
+#if 1
+    QGraphicsRectItem *rectItem = this->addRect(QRectF(10, 10, 100, 100));
+    rectItem->setFlag(QGraphicsItem::ItemIsSelectable,true);
+    rectItem->setFlag(QGraphicsItem::ItemIsMovable,true);
+    rectItem->setFlag(QGraphicsItem::ItemIsFocusable,true);
+
     QPen pen = rectItem->pen();
     pen.setWidth(2);
     pen.setColor(QColor(111, 111, 111));
@@ -84,6 +84,7 @@ void MyScene::buildTest()
     ItemPosition temPos;
 
     MyItem *itemOne = new MyItem;
+    connect(itemOne,SIGNAL(doubleSig(QString)),this,SLOT(ItemDoubleClickedSlot(QString)));
     itemOne->setpos(0,100);
     itemOne->setSize(itemWidth,itemHeight);
     ItemVector.push_back(itemOne);
@@ -94,6 +95,7 @@ void MyScene::buildTest()
     ItemPosVector.push_back(temPos);
 
     MyItem *itemTwo = new MyItem;
+    connect(itemTwo,SIGNAL(doubleSig(QString)),this,SLOT(ItemDoubleClickedSlot(QString)));
     itemTwo->setpos(120,100);
     itemTwo->setSize(itemWidth,itemHeight);
     ItemVector.push_back(itemTwo);
@@ -104,6 +106,7 @@ void MyScene::buildTest()
     ItemPosVector.push_back(temPos);
 
     MyItem *itemThree = new MyItem;
+    connect(itemThree,SIGNAL(doubleSig(QString)),this,SLOT(ItemDoubleClickedSlot(QString)));
     itemThree->setpos(240,100);
     itemThree->setSize(itemWidth,itemHeight);
     itemThree->setFocusStatus(true);
@@ -118,6 +121,7 @@ void MyScene::buildTest()
     ItemPosVector.push_back(temPos);
 
     MyItem *itemFore = new MyItem;
+    connect(itemFore,SIGNAL(doubleSig(QString)),this,SLOT(ItemDoubleClickedSlot(QString)));
     itemFore->setpos(360,100);
     itemFore->setSize(itemWidth,itemHeight);
     ItemVector.push_back(itemFore);
@@ -128,6 +132,7 @@ void MyScene::buildTest()
     ItemPosVector.push_back(temPos);
 
     MyItem *itemFive = new MyItem;
+    connect(itemFive,SIGNAL(doubleSig(QString)),this,SLOT(ItemDoubleClickedSlot(QString)));
     itemFive->setpos(480,100);
     itemFive->setSize(itemWidth,itemHeight);
     ItemVector.push_back(itemFive);
@@ -152,11 +157,11 @@ void MyScene::buildUI()
 
 }
 
-
-void MyScene::focusItemChangedSlot(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason)
+void MyScene::ItemDoubleClickedSlot(QString name)
 {
-    qDebug() << "===============点击图元 slot================";
+    qDebug() << "==============MyScene::ItemDoubleClickedSlot name ===" << name;
 }
+
 
 void MyScene::drawBackground( QPainter * painter, const QRectF & rect )
 {
@@ -168,11 +173,18 @@ void MyScene::drawBackground( QPainter * painter, const QRectF & rect )
 
 #if 1
 
+void MyScene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event)
+{
+    qDebug() << "================MyScene::mouseDoubleClickEvent=========";
+    QGraphicsScene::mouseDoubleClickEvent(event);
+}
+
 void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     if(mouseEvent->button() == Qt::LeftButton){
         isMousePress = true;
         pressedPos = mouseEvent->screenPos();
+        movePos = mouseEvent->screenPos();
     }
 
     QGraphicsScene::mousePressEvent(mouseEvent); // 将点击事件向下传递到item中
@@ -181,15 +193,33 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
-    if(mouseEvent->button() == Qt::LeftButton){
+    if(isMousePress) {
+        int tempXPt = 0;
+        int grap = mouseEvent->screenPos().x() - movePos.x();
+        //qDebug() << "===============MyScene::mouseMoveEvent move grape==== " << grap;
+        qDebug() << "===============MyScene::mouseMoveEvent move Xpos==== " << mouseEvent->screenPos().x();
+
         //向左滑动
         if(mouseEvent->screenPos().x() < pressedPos.x()){
             showFirstAppIndex += 1;
             showEndAppIndex += 1;
+
+            tempXPt = mouseEvent->screenPos().x() + grap;
+
         }else{
             //向右滑动
+            tempXPt = mouseEvent->screenPos().x() + grap;
+        }
+
+        for(int i = 0; i<ItemVector.size();++i){
+            tempXPt = ItemVector[i]->getItemXpos() + grap;
+            ItemVector[i]->setpos(tempXPt,100);
 
         }
+
+        movePos = mouseEvent->screenPos();
+        qDebug() << "===========MyScene::mouseMoveEvent===========";
+        emit updateSig();
     }
 
     QGraphicsScene::mouseMoveEvent(mouseEvent);
@@ -202,6 +232,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
     qDebug() << "==============move before===============" << focusIndex;
 
+    int grap = mouseEvent->screenPos().x() - movePos.x();
     //向左滑动
     if(mouseEvent->screenPos().x() < pressedPos.x()){
 
@@ -218,7 +249,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         int tempXPt = 0;
 
         for(int i = 0; i<ItemVector.size();++i){
-            tempXPt = ItemVector[i]->getItemXpos() - 120;
+            tempXPt = ItemVector[i]->getItemXpos() + grap;
             ItemVector[i]->setpos(tempXPt,100);
 
             if(i == tempFocusIndex){
@@ -245,7 +276,7 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
         int tempXPt = 0;
 
         for(int i = 0; i<ItemVector.size();++i){
-            tempXPt = ItemVector[i]->getItemXpos() + 120;
+            tempXPt = ItemVector[i]->getItemXpos() + grap;
             ItemVector[i]->setpos(tempXPt,100);
 
             if(i == tempFocusIndex){

@@ -19,6 +19,9 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
 
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+
+
 private:
     void init();
     void clear();
@@ -26,8 +29,7 @@ private:
     void buildUI();
 
 private slots:
-    void focusItemChangedSlot(QGraphicsItem *newFocusItem, QGraphicsItem *oldFocusItem, Qt::FocusReason reason);
-
+    void ItemDoubleClickedSlot(QString);
 
 signals:
     void updateSig();
@@ -42,6 +44,8 @@ private:
 
     bool isMousePress;
     QPoint pressedPos;
+
+    QPoint movePos;
 
     int totleAppNum;
     int showFirstAppIndex;
