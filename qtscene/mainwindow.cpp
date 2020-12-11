@@ -27,7 +27,7 @@ void MainWindow::buildui()
     view->setSceneRect(0,0,400,400);
     view->setStyleSheet("padding: 0px; border: 0px;");
 
-    MyScene *scene = new MyScene();
+    MyScene *scene = new MyScene(this);
     view->setScene(scene);
     connect(scene,SIGNAL(updateSig()),this,SLOT(updateSlot()));
 
@@ -35,5 +35,5 @@ void MainWindow::buildui()
 
 void MainWindow::updateSlot()
 {
-    view->repaint();
+    view->update();
 }

@@ -6,6 +6,7 @@
 #include <QRect>
 #include <QPainter>
 #include <QDebug>
+#include <QGraphicsScene>
 
 MyItem::MyItem()
 {
@@ -100,6 +101,13 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
     painter->setPen(QPen(QColor(255,48,48)));
     painter->drawText(rectTemp, pixName, QTextOption(Qt::AlignHCenter | Qt::AlignVCenter));
+
+    //碰撞检测
+    if(!scene()->collidingItems(this).isEmpty() ){
+        painter->setBrush(QBrush(QColor(255,215,0)));
+        painter->drawRect(rect.x(),rect.y(),rect.width(),rect.height());
+    }
+
 
 }
 

@@ -68,7 +68,7 @@ void MyScene::buildTest()
     dataObjec->loadAppData();
     totleAppNum = dataObjec->getAppNumber();
 
-#if 0
+#if 1
     QGraphicsRectItem *rectItem = this->addRect(QRectF(10, 10, 100, 100));
     rectItem->setFlag(QGraphicsItem::ItemIsSelectable,true);
     rectItem->setFlag(QGraphicsItem::ItemIsMovable,true);
