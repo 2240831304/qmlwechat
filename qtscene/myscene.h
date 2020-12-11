@@ -19,7 +19,7 @@ protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent);
 
-    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
+    //void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
 
 private:

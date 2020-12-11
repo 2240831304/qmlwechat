@@ -31,6 +31,8 @@ protected:
 
     void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event);
 
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
+
 
 
 signals:
