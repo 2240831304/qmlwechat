@@ -15,7 +15,7 @@ MyItem::MyItem()
 
     setFlags(QGraphicsItem::ItemIsSelectable | QGraphicsItem::ItemIsFocusable);
 
-//    this->setFlag(QGraphicsItem::ItemIsSelectable);
+    setFlag(QGraphicsItem::ItemIsMovable, true);//可以拖动
 //    this->setAcceptedMouseButtons(Qt::LeftButton);
       //this->setAcceptHoverEvents(true);//重写hover事件需添加
 }
