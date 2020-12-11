@@ -43,9 +43,9 @@ private:
     data *dataObjec;
 
     bool isMousePress;
-    QPoint pressedPos;
+    QPointF pressedPos;
 
-    QPoint movePos;
+    QPointF movePos;
 
     int totleAppNum;
     int showFirstAppIndex;

@@ -68,7 +68,7 @@ void MyScene::buildTest()
     dataObjec->loadAppData();
     totleAppNum = dataObjec->getAppNumber();
 
-#if 1
+#if 0
     QGraphicsRectItem *rectItem = this->addRect(QRectF(10, 10, 100, 100));
     rectItem->setFlag(QGraphicsItem::ItemIsSelectable,true);
     rectItem->setFlag(QGraphicsItem::ItemIsMovable,true);
@@ -183,8 +183,8 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     if(mouseEvent->button() == Qt::LeftButton){
         isMousePress = true;
-        pressedPos = mouseEvent->screenPos();
-        movePos = mouseEvent->screenPos();
+        pressedPos = mouseEvent->scenePos();
+        movePos = mouseEvent->scenePos();
     }
 
     QGraphicsScene::mousePressEvent(mouseEvent); // 将点击事件向下传递到item中
@@ -195,20 +195,21 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
     if(isMousePress) {
         int tempXPt = 0;
-        int grap = mouseEvent->screenPos().x() - movePos.x();
+        int grap = mouseEvent->scenePos().x() - movePos.x();
         //qDebug() << "===============MyScene::mouseMoveEvent move grape==== " << grap;
-        qDebug() << "===============MyScene::mouseMoveEvent move Xpos==== " << mouseEvent->screenPos().x();
+        qDebug() << "===============MyScene::mouseMoveEvent move gloable Xpos==== " << mouseEvent->screenPos().x();
+        qDebug() << "===============MyScene::mouseMoveEvent move scene Xpos==== " << mouseEvent->scenePos().x();
 
         //向左滑动
-        if(mouseEvent->screenPos().x() < pressedPos.x()){
+        if(mouseEvent->scenePos().x() < pressedPos.x()){
             showFirstAppIndex += 1;
             showEndAppIndex += 1;
 
-            tempXPt = mouseEvent->screenPos().x() + grap;
+            tempXPt = mouseEvent->scenePos().x() + grap;
 
         }else{
             //向右滑动
-            tempXPt = mouseEvent->screenPos().x() + grap;
+            tempXPt = mouseEvent->scenePos().x() + grap;
         }
 
         for(int i = 0; i<ItemVector.size();++i){
@@ -217,7 +218,7 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         }
 
-        movePos = mouseEvent->screenPos();
+        movePos = mouseEvent->scenePos();
         qDebug() << "===========MyScene::mouseMoveEvent===========";
         emit updateSig();
     }
@@ -232,9 +233,9 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
     qDebug() << "==============move before===============" << focusIndex;
 
-    int grap = mouseEvent->screenPos().x() - movePos.x();
+    int grap = mouseEvent->scenePos().x() - movePos.x();
     //向左滑动
-    if(mouseEvent->screenPos().x() < pressedPos.x()){
+    if(mouseEvent->scenePos().x() < pressedPos.x()){
 
         int tempFocusIndex = focusIndex;
         focusIndex += 1;
@@ -260,8 +261,10 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         }
 
+        qDebug() << "333333333333333333333333=" << ItemVector[4]->getItemXpos();
+
         emit updateSig();
-    }else if(mouseEvent->screenPos().x() > pressedPos.x()){
+    }else if(mouseEvent->scenePos().x() > pressedPos.x()){
         //向右滑动
         int tempFocusIndex = focusIndex;
         focusIndex -= 1;

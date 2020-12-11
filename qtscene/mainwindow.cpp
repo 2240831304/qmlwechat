@@ -35,5 +35,5 @@ void MainWindow::buildui()
 
 void MainWindow::updateSlot()
 {
-    view->update();
+    view->repaint();
 }
