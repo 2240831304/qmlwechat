@@ -19,7 +19,7 @@ private slots:
     void updateSlot();
 
 private:
-    QGraphicsView *view;
+
 };
 
 #endif // MAINWINDOW_H

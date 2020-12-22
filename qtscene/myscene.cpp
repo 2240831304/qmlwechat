@@ -24,12 +24,15 @@ MyScene::MyScene(QObject *parent)
 
     dataObjec = new data;
 
+    //setSceneRect(0,0,600,400);
+
     init();
 #if 1
     buildTest();
 #else
     buildUI();
 #endif
+
 
 }
 
@@ -68,7 +71,7 @@ void MyScene::buildTest()
     dataObjec->loadAppData();
     totleAppNum = dataObjec->getAppNumber();
 
-#if 0
+#if 1
     QGraphicsRectItem *rectItem = this->addRect(QRectF(10, 10, 100, 100));
     rectItem->setFlag(QGraphicsItem::ItemIsSelectable,true);
     rectItem->setFlag(QGraphicsItem::ItemIsMovable,true);
@@ -197,6 +200,9 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
+
+//滑动重新计算坐标，重画
+#if 0
     if(isMousePress) {
         int tempXPt = 0;
         int grap = mouseEvent->scenePos().x() - movePos.x();
@@ -227,6 +233,9 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
         //qDebug() << "===========MyScene::mouseMoveEvent===========";
         emit updateSig();
     }
+#endif
+
+    emit updateSig();
 
     QGraphicsScene::mouseMoveEvent(mouseEvent);
 }
@@ -239,6 +248,9 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
     qDebug() << "==============move before===============" << focusIndex;
 
     int grap = mouseEvent->scenePos().x() - movePos.x();
+
+//滑动计算坐标重新画
+#if 0
     //向左滑动
     if(mouseEvent->scenePos().x() < pressedPos.x()){
 
@@ -310,6 +322,8 @@ void MyScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         emit updateSig();
     }
+
+#endif
 
     qDebug() << "==============move finished===============" << focusIndex;
     QGraphicsScene::mouseReleaseEvent(mouseEvent);

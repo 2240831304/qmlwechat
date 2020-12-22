@@ -102,7 +102,7 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->setPen(QPen(QColor(255,48,48)));
     painter->drawText(rectTemp, pixName, QTextOption(Qt::AlignHCenter | Qt::AlignVCenter));
 
-    qDebug() << "@@@@@@@@@@@MyItem::paint========" << pixName;
+    //qDebug() << "@@@@@@@@@@@MyItem::paint========" << pixName;
 
     //碰撞检测
     if(!scene()->collidingItems(this).isEmpty() ){
@@ -145,15 +145,16 @@ QVariant MyItem::itemChange(GraphicsItemChange change, const QVariant &value)
 {
     qDebug() << "44444444444444444MyItem::itemChange======";
     if (change == ItemPositionChange && scene()) {
-            // value is the new position.
-            QPointF newPos = value.toPointF();
-            QRectF rect = scene()->sceneRect();
-            if (!rect.contains(newPos)) {
-                // Keep the item inside the scene rect.
-                newPos.setX(qMin(rect.right(), qMax(newPos.x(), rect.left())));
-                newPos.setY(qMin(rect.bottom(), qMax(newPos.y(), rect.top())));
-                return newPos;
-            }
+        // value is the new position.
+        QPointF newPos = value.toPointF();
+        QRectF rect = scene()->sceneRect();
+        if (!rect.contains(newPos)) {
+            // Keep the item inside the scene rect.
+            newPos.setX(qMin(rect.right(), qMax(newPos.x(), rect.left())));
+            newPos.setY(qMin(rect.bottom(), qMax(newPos.y(), rect.top())));
+            return newPos;
         }
-        return QGraphicsItem::itemChange(change, value);
+   }
+
+   return QGraphicsItem::itemChange(change, value);
 }

@@ -33,7 +33,8 @@ SOURCES += \
     data.cpp \
     tabwidget.cpp \
     myqtabbar.cpp \
-    mytabwidget.cpp
+    mytabwidget.cpp \
+    mygraphicsview.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -42,7 +43,8 @@ HEADERS += \
     data.h \
     tabwidget.h \
     myqtabbar.h \
-    mytabwidget.h
+    mytabwidget.h \
+    mygraphicsview.h
 
 RESOURCES += \
     tabs.qrc \
