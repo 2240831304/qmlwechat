@@ -235,7 +235,9 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     }
 #endif
 
-    emit updateSig();
+    //emit updateSig();
+
+    emit sceneRectChanged(QRectF(520,0,400,400));
 
     QGraphicsScene::mouseMoveEvent(mouseEvent);
 }

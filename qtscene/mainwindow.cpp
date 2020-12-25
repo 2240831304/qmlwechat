@@ -29,7 +29,11 @@ void MainWindow::buildui()
     view = new MyGraphicsView(this);
     view->move(50,50);
     view->setFixedSize(400,400);
-    view->setSceneRect(0,0,600,400);
+
+    //scene和view的原点对齐
+    //view->setSceneRect(0,0,600,400);
+    view->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+
     view->setStyleSheet("padding: 0px; border: 0px;");
 
     scene = new MyScene(this);
