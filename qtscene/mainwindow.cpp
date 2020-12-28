@@ -43,7 +43,9 @@ void MainWindow::buildui()
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    connect(scene,SIGNAL(updateSig()),view,SLOT(updateSlot()));
+    qDebug() << "333333333333MainWindow::buildui() scence width ==" << scene->width();
+
+    connect(scene,SIGNAL(moveRangeSig(int,int)),view,SLOT(moveRangeSlot(int,int)));
 
 }
 

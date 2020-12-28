@@ -33,6 +33,7 @@ private slots:
 
 signals:
     void updateSig();
+    void moveRangeSig(int,int);
 
 private:
     int itemWidth;

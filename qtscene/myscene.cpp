@@ -201,11 +201,13 @@ void MyScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 {
 
+    int grap = mouseEvent->scenePos().x() - movePos.x();
+
 //滑动重新计算坐标，重画
 #if 0
     if(isMousePress) {
         int tempXPt = 0;
-        int grap = mouseEvent->scenePos().x() - movePos.x();
+
         //qDebug() << "===============MyScene::mouseMoveEvent move grape==== " << grap;
         //qDebug() << "===============MyScene::mouseMoveEvent move gloable Xpos==== " << mouseEvent->screenPos().x();
         //qDebug() << "===============MyScene::mouseMoveEvent move scene Xpos==== " << mouseEvent->scenePos().x();
@@ -229,15 +231,15 @@ void MyScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
         }
 
-        movePos = mouseEvent->scenePos();
         //qDebug() << "===========MyScene::mouseMoveEvent===========";
         emit updateSig();
     }
 #endif
 
-    //emit updateSig();
+    emit moveRangeSig(grap,10);
 
-    emit sceneRectChanged(QRectF(520,0,400,400));
+    movePos = mouseEvent->scenePos();
+
 
     QGraphicsScene::mouseMoveEvent(mouseEvent);
 }

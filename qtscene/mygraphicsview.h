@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QGraphicsView>
+#include <QPointF>
 
 class MyGraphicsView : public QGraphicsView
 {
@@ -13,6 +14,12 @@ public:
 
 public slots:
     void updateSlot();
+    void moveRangeSlot(int,int);
+
+
+private:
+    QPointF InitCentOnPos;
+    QPointF MoveCentOnPos;
 };
 
 #endif // MYGRAPHICSVIEW_H

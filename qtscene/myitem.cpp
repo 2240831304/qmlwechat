@@ -89,6 +89,8 @@ void MyItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     if(pixName.isEmpty())
         return;
 
+    qDebug() << "22222222222222222MyItem::paint===22222222222222";
+
     QPen pen(Qt::black);
     painter->setPen(pen);
 
