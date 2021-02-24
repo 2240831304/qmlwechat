@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/mainqml">
         <file>main.qml</file>
+        <file>test.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>calculator.png</file>
     </qresource>
     <qresource prefix="/imagetest">
-	<file>calculator.png</file>
+        <file>calculator.png</file>
     </qresource>
 </RCC>
