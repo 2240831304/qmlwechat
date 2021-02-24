@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<CalculatorClient>("org.com.calculatorclient",1,1,"Calculator");
 
     QQmlApplicationEngine engine;
-    engine.load(QUrl(QStringLiteral("qrc:/mainqml/test.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/mainqml/SequentialAnimation.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
 

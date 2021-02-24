@@ -2,9 +2,11 @@
     <qresource prefix="/mainqml">
         <file>main.qml</file>
         <file>test.qml</file>
+        <file>SequentialAnimation.qml</file>
     </qresource>
     <qresource prefix="/image">
         <file>calculator.png</file>
+	<file>close.png</file>
     </qresource>
     <qresource prefix="/imagetest">
         <file>calculator.png</file>
