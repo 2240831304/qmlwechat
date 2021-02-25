@@ -126,11 +126,11 @@ Rectangle {
 //            ColorAnimation { target: light3; properties: "color"; duration: 2000 }
 //        }
 
-        Transition {
-            from: "stop"; to: "wait"
-            //ColorAnimation { target: light2; properties: "color"; duration: 2000 }
-            ColorAnimation { target: light3; properties: "color"; duration: 1000 }
-        }
+//        Transition {
+//            from: "stop"; to: "wait"
+//            //ColorAnimation { target: light2; properties: "color"; duration: 2000 }
+//            ColorAnimation { target: light3; properties: "color"; duration: 1000 }
+//        }
     ]
 
 
