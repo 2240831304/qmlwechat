@@ -140,7 +140,7 @@ Rectangle {
         repeat:true
         triggeredOnStart:false
         onTriggered: {
-             console.log("tttttttttttttttttt")
+             //console.log("tttttttttttttttttt")
             root.redtime--
             if(root.redtime == 0){
                 redtimer.stop()
