@@ -176,6 +176,21 @@ Item {
         }
     }
 
+    Button{
+        id: signallampbut
+        width:100
+        height:50
+        anchors.left: animationbut.right
+        anchors.topMargin: 3
+        anchors.top: animationbut.bottom
+        text:"路边信号灯"
+
+        onClicked:
+        {
+            CalculatorServerObject.signallamp()
+        }
+    }
+
     Connections{
         target: CalculatorServerObject
         onChangeSig:{

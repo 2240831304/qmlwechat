@@ -23,7 +23,7 @@ public:
     Q_INVOKABLE void createListView();
 
     Q_INVOKABLE void createAnimation();
-
+    Q_INVOKABLE void signallamp();
 
 signals:
      void changeSig();
