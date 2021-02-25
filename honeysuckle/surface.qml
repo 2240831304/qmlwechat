@@ -161,6 +161,21 @@ Item {
         }
     }
 
+    Button{
+        id:animationbut
+        width:100
+        height:50
+        anchors.left: mutualListViewBut.right
+        anchors.topMargin: 3
+        anchors.top: mutualListViewBut.bottom
+        text:"动画实验"
+
+        onClicked:
+        {
+            CalculatorServerObject.createAnimation()
+        }
+    }
+
     Connections{
         target: CalculatorServerObject
         onChangeSig:{

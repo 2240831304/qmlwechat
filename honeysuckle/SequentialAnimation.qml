@@ -41,7 +41,8 @@ Window {
     // M2>>
     Image {
         id: ball
-        x: 0; y: root.height-height
+        x: 0;
+        y: root.height-height
         source: "qrc:/image/close.png"
 
         MouseArea {
@@ -58,7 +59,7 @@ Window {
     // <<M2
 
     // M3>>
-    //平行动画
+    //并行动画
     ParallelAnimation {
         id: anim
         //插入连续动画
@@ -67,10 +68,10 @@ Window {
             NumberAnimation {
                 target: ball
                 properties: "y"
-                to: 20
+                to: 10
                 duration: root.duration * 0.4
                 //设置缓冲曲线风格
-                easing.type: Easing.OutCirc
+                easing.type: Easing.overshoot
             }
             //Y方向下降
             NumberAnimation {
@@ -92,11 +93,10 @@ Window {
         RotationAnimation {
             target: ball
             properties: "rotation"
-            to: 720
+            to: 90
             duration: root.duration
         }
     }
-    // <<M3
 
 
 }

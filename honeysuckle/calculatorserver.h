@@ -22,6 +22,8 @@ public:
 
     Q_INVOKABLE void createListView();
 
+    Q_INVOKABLE void createAnimation();
+
 
 signals:
      void changeSig();

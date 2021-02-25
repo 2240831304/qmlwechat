@@ -83,3 +83,14 @@ void CalculatorServer::createListView()
 
 }
 
+
+void CalculatorServer::createAnimation()
+{
+    QQmlApplicationEngine *engine = new QQmlApplicationEngine;
+    //engine->load(QUrl(QStringLiteral("qrc:/mainqml/SequentialAnimation.qml")));
+    engine->load(QUrl(QStringLiteral("qrc:/mainqml/stateAnimation.qml")));
+
+    if (engine->rootObjects().isEmpty())
+        return ;
+}
+
