@@ -41,7 +41,7 @@ Rectangle {
         Text {
             id: redtext
             anchors.centerIn: parent
-            text: root.redtime
+            //text: root.redtime
         }
 
     }
@@ -57,7 +57,6 @@ Rectangle {
         Text {
             id: greentext
             anchors.centerIn: parent
-            text: ""
         }
     }
 
@@ -72,7 +71,6 @@ Rectangle {
         Text {
             id: yellowtext
             anchors.centerIn: parent
-            text: ""
         }
     }
 
@@ -94,7 +92,8 @@ Rectangle {
             name: "wait"
             PropertyChanges { target: light1; color: root.black }
             PropertyChanges { target: light2; color: root.black }
-            PropertyChanges { target: light3; color: root.yellow }
+            PropertyChanges { target: light3; color: root.yellow; }
+            PropertyChanges { target: yellowtext;text:root.yellowtime; }
         }
     ]
 //注意：在一个状态中，只需要描述属性如何从它们的默认状态改变（而不是前一个状态的改变）
@@ -104,6 +103,7 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             redtimer.start()
+            redtext.text = root.redtime
 //            if(parent.state == "stop")
 //                parent.state = "wait";
 //            else if(parent.state == "wait")
@@ -138,14 +138,15 @@ Rectangle {
         id:redtimer;
         interval: 1000; //定时周期
         repeat:true
-        triggeredOnStart: true
+        triggeredOnStart:false
         onTriggered: {
+             console.log("tttttttttttttttttt")
             root.redtime--
             if(root.redtime == 0){
                 redtimer.stop()
                 parent.state = "wait";
                 redtext.text = ""
-                yellowtext.text = root.yellowtime
+                //yellowtext.text = root.yellowtime
 
                 yellowtimer.start()
             }else{
@@ -160,15 +161,37 @@ Rectangle {
         id:yellowtimer;
         interval: 1000; //定时周期
         repeat:true
-        triggeredOnStart: true
+        triggeredOnStart: false
         onTriggered: {
             root.yellowtime--
             if(root.yellowtime == 0){
                 yellowtimer.stop()
                 parent.state = "go";
                 yellowtext.text = ""
+
+                greentext.text = root.greentime
+                greentimer.start()
             }else{
                 yellowtext.text = root.yellowtime
+            }
+
+        }
+
+    }
+
+    Timer{
+        id:greentimer;
+        interval: 1000; //定时周期
+        repeat:true
+        triggeredOnStart: false
+        onTriggered: {
+            root.greentime--
+            if(root.greentime == 0){
+                greentimer.stop()
+                parent.state = "stop";
+                greentext.text = ""
+            }else{
+                greentext.text = root.greentime
             }
 
         }
