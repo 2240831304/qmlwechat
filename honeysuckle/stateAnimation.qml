@@ -3,7 +3,6 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.3
-import org.com.calculatorclient 1.1
 import QtLocation 5.6
 import QtQml 2.2
 
@@ -13,7 +12,7 @@ import QtQml 2.2
 Rectangle {
     id: root
     visible: true
-    width: 150
+    width: 200
     height: 400
 //自定义属性 property <type> <name>:<value>
     property color black: '#1f1f21'
@@ -21,12 +20,15 @@ Rectangle {
     property color green: '#53d769'
     property color yellow: '#ffff37'
 
+    property int redtime: 10
+    property int greentime: 6
+    property int yellowtime: 3
+
 //颜色渐变
     gradient: Gradient {
         GradientStop { position: 0.0; color: "#2ed5fa" }
         GradientStop { position: 1.0; color: "#2467ec" }
     }
-
 
 
     Rectangle {
@@ -36,6 +38,12 @@ Rectangle {
         radius: width/2
         color: root.black
         border.color: Qt.lighter(color, 1.1)
+        Text {
+            id: redtext
+            anchors.centerIn: parent
+            text: root.redtime
+        }
+
     }
 
     Rectangle {
@@ -46,6 +54,7 @@ Rectangle {
         color: root.black
         border.color: Qt.lighter(color, 1.1)
     }
+
     Rectangle {
         id: light3
         x: 25; y: 255
@@ -54,7 +63,6 @@ Rectangle {
         color: root.black
         border.color: Qt.lighter(color, 1.1)
     }
-
 
     // 默认状态为“stop”
     state: "stop"
@@ -83,21 +91,20 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         onClicked: {
-                if(parent.state == "stop")
-                parent.state = "wait";
-                else if(parent.state == "wait")
-                parent.state = "go";
-                else
-                parent.state = "stop"
-                }
+            redtimer.start()
+//            if(parent.state == "stop")
+//                parent.state = "wait";
+//            else if(parent.state == "wait")
+//                parent.state = "go";
+//            else
+//                parent.state = "stop"
+        }
     }
-
 
     // 添加过渡
     transitions: [
         Transition {
             from: "stop"; to: "go"
-//            from: "*"; to: "*"
             ColorAnimation { target: light1; properties: "color"; duration: 2000 }
             ColorAnimation { target: light2; properties: "color"; duration: 2000 }
         },
@@ -107,5 +114,27 @@ Rectangle {
             ColorAnimation { target: light3; properties: "color"; duration: 2000 }
         }
     ]
+
+
+    Timer{
+        id:redtimer;
+        interval: 1000; //定时周期
+        repeat:true
+        triggeredOnStart: true
+        onTriggered: {
+            root.redtime--
+            if(root.redtime == 0){
+                redtimer.stop()
+                parent.state = "wait";
+            }
+            redtext.text = root.redtime
+        }
+
+    }
+
+    function start(){
+        redtimer.start()
+    }
+
 
 }
